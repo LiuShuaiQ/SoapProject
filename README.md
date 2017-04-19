@@ -29,7 +29,7 @@ public void getSupportCity(String cityName, Callback callback) {
 ```
 * 同步调用
 ```Java
-public void getSupportCity(String cityName, Callback callback) {
+public SoapEnvelope getSupportCity(String cityName) {
         SoapRequest request = new SoapRequest.Builder().endPoint("http://www.webxml.com.cn/WebServices/WeatherWebService.asmx")
                 .methodName("getSupportCity")
                 .soapAction("http://WebXml.com.cn/" + "getSupportCity")
@@ -37,7 +37,7 @@ public void getSupportCity(String cityName, Callback callback) {
                 .nameSpace("http://WebXml.com.cn/")
                 .setVersion(SoapEnvelope.VER11)
                 .build();
-        mSoapClient.newCall(request).execute();
+        return mSoapClient.newCall(request).execute();
     }
 ```
 

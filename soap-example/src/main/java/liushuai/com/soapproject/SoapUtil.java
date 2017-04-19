@@ -32,6 +32,11 @@ public class SoapUtil {
     }
 
 
+    /**
+     * 异步调用
+     * @param cityName
+     * @param callback
+     */
     public void getSupportCity(String cityName, Callback callback) {
         SoapRequest request = new SoapRequest.Builder().endPoint(mWeatherEndPoint)
                 .methodName("getSupportCity")
@@ -41,6 +46,22 @@ public class SoapUtil {
                 .setVersion(mSOAPVersion)
                 .build();
         mSoapClient.newCall(request).enqueue(callback);
+    }
+
+    /**
+     * 同步调用
+     * @param cityName
+     * @return
+     */
+    public SoapEnvelope getSupportCity(String cityName) {
+        SoapRequest request = new SoapRequest.Builder().endPoint(mWeatherEndPoint)
+                .methodName("getSupportCity")
+                .soapAction(mNameSpace + "getSupportCity")
+                .addParam("byProvinceName", cityName)
+                .nameSpace(mNameSpace)
+                .setVersion(mSOAPVersion)
+                .build();
+        return mSoapClient.newCall(request).execute();
     }
 
 }
