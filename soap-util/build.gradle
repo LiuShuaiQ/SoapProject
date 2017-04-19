@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/ksoap2-android-assembly-3.6.2-jar-with-dependencies.jar')
+}
+task deleteOldJar(type: Delete) {
+    delete 'build/libs/banner.jar'
+}
+
+task exportJar(type: Copy) {
+    //build/intermediates/bundles/release/
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename('classes.jar', 'banner.jar')
+}
+exportJar.dependsOn(deleteOldJar, build)
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
