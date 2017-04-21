@@ -3,6 +3,7 @@ package liushuai.com.soapproject;
 import com.liushuai.network.Callback;
 import com.liushuai.network.SoapClient;
 import com.liushuai.network.SoapRequest;
+import com.liushuai.tool.SoapEnvelopeUtil;
 
 import org.ksoap2.SoapEnvelope;
 
@@ -22,6 +23,8 @@ public class SoapUtil {
 
     private SoapUtil() {
         mSoapClient = new SoapClient();
+        //设置是否是调试模式
+        mSoapClient.setDebug(true);
     }
 
     public static synchronized SoapUtil getInstance() {
@@ -34,6 +37,7 @@ public class SoapUtil {
 
     /**
      * 异步调用
+     *
      * @param cityName
      * @param callback
      */
@@ -44,12 +48,14 @@ public class SoapUtil {
                 .addParam("byProvinceName", cityName)
                 .nameSpace(mNameSpace)
                 .setVersion(mSOAPVersion)
+                .setDotNet(true)
                 .build();
         mSoapClient.newCall(request).enqueue(callback);
     }
 
     /**
      * 同步调用
+     *
      * @param cityName
      * @return
      */
@@ -60,6 +66,7 @@ public class SoapUtil {
                 .addParam("byProvinceName", cityName)
                 .nameSpace(mNameSpace)
                 .setVersion(mSOAPVersion)
+                .setDotNet(true)
                 .build();
         return mSoapClient.newCall(request).execute();
     }

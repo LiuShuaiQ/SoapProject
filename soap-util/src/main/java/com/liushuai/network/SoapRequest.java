@@ -5,6 +5,8 @@ import org.ksoap2.SoapEnvelope;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.HttpUrl;
+
 /**
  * Created by LiuShuai on 2017/3/6.
  */
@@ -15,7 +17,9 @@ public class SoapRequest {
     private String nameSpace;
     private String methodName;
     private String soapAction;
-    private int version = 0;
+    private int version = SoapEnvelope.VER11;
+
+    private boolean isDotNet;
 
     private Map<String, Object> mParamsMap;
 
@@ -25,7 +29,8 @@ public class SoapRequest {
         this.methodName = builder.methodName;
         this.soapAction = builder.soapAction;
         this.mParamsMap = builder.mParamsMap;
-        this.version = version;
+        this.version = builder.version;
+        this.isDotNet = builder.isDotNet;
     }
 
     public void setEndPoint(String endPoint) {
@@ -47,6 +52,15 @@ public class SoapRequest {
     public void setParamsMap(Map<String, Object> paramsMap) {
         mParamsMap = paramsMap;
     }
+
+    public void setDotNet(boolean dotNet) {
+        isDotNet = dotNet;
+    }
+
+    public boolean isDotNet() {
+        return isDotNet;
+    }
+
 
     public String getEndPoint() {
         return endPoint;
@@ -84,6 +98,8 @@ public class SoapRequest {
 
         private int version = 0;
 
+        private boolean isDotNet;
+
         private Map<String, Object> mParamsMap = new HashMap<String, Object>();
 
         public Builder endPoint(String endPoint) {
@@ -118,6 +134,11 @@ public class SoapRequest {
 
         public Builder setVersion(int version) {
             this.version = version;
+            return this;
+        }
+
+        public Builder setDotNet(boolean isDotNet) {
+            this.isDotNet = isDotNet;
             return this;
         }
 

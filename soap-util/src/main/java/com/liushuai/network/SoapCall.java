@@ -3,7 +3,7 @@ package com.liushuai.network;
 import org.ksoap2.SoapEnvelope;
 
 /**
- * Created by Panda on 2017/3/6.
+ * Created by LiuShuai on 2017/3/6.
  */
 
 public class SoapCall implements Call {
@@ -22,6 +22,7 @@ public class SoapCall implements Call {
             mSoapClient = client;
             mDispatcher = client.getDispatcher();
             mSoapHttpEngine = new SoapHttpEngine(soapRequest);
+            mSoapHttpEngine.setDebug(mSoapClient.isDebug());
         } catch (Exception e) {
             e.printStackTrace();
         }

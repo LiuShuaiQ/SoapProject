@@ -8,13 +8,14 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.util.Map;
 
 /**
- * Created by Panda on 2017/3/6.
+ * Created by LiuShuai on 2017/3/6.
  */
 
 public class SoapHttpEngine implements HttpEngine {
 
     private static final String TAG = "SoapHttpEngine";
     private SoapRequest mSoapRequest;
+    private boolean isDebug = false;
 
     public SoapHttpEngine(SoapRequest soapRequest) {
         mSoapRequest = soapRequest;
@@ -39,10 +40,10 @@ public class SoapHttpEngine implements HttpEngine {
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(mSoapRequest.getVersion());
         envelope.bodyOut = rpc;
         // 设置是否调用的是dotNet开发的WebService
-        envelope.dotNet = true;
+        envelope.dotNet = mSoapRequest.isDotNet();
 
         HttpTransportSE transport = new HttpTransportSE(mSoapRequest.getEndPoint());
-        transport.debug = true;
+        transport.debug = isDebug;
 
         transport.call(mSoapRequest.getSoapAction(), envelope);
 //        if (envelope.getResponse() != null) {
@@ -53,4 +54,11 @@ public class SoapHttpEngine implements HttpEngine {
         return envelope;
     }
 
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public void setDebug(boolean debug) {
+        isDebug = debug;
+    }
 }

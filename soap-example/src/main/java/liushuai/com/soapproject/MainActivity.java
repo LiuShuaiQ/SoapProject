@@ -3,6 +3,7 @@ package liushuai.com.soapproject;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.liushuai.network.Callback;
 import com.liushuai.tool.SoapEnvelopeUtil;
@@ -16,6 +17,9 @@ public class MainActivity extends AppCompatActivity implements Callback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void request(View view) {
         SoapUtil.getInstance().getSupportCity("山东", this);
     }
 
