@@ -23,6 +23,7 @@ public void getSupportCity(String cityName, Callback callback) {
                 .addParam("byProvinceName", cityName)
                 .nameSpace("http://WebXml.com.cn/")
                 .setVersion(SoapEnvelope.VER11)
+                .setDotNet(true)
                 .build();
         mSoapClient.newCall(request).enqueue(callback);
     }
@@ -36,6 +37,7 @@ public SoapEnvelope getSupportCity(String cityName) {
                 .addParam("byProvinceName", cityName)
                 .nameSpace("http://WebXml.com.cn/")
                 .setVersion(SoapEnvelope.VER11)
+                .setDotNet(true)
                 .build();
         return mSoapClient.newCall(request).execute();
     }
