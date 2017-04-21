@@ -3,6 +3,7 @@
 ------------------------------
 这是对于ksoap2-android的二次封装库
 soap-util是这个项目的源码，soap-example是这个项目的使用实例
+[博客链接](http://blog.csdn.net/LiuShuaiQ/article/details/70238810)
 
 ##导入
 1)首先是引用ksoap2-android的jar包，这个在soap-example下的libs下有，你可以下载下来使用
@@ -13,9 +14,12 @@ soap-util是这个项目的源码，soap-example是这个项目的使用实例
 ```Java
     //没有特殊情况尽量保持一个SoapClient
     private SoapClient mSoapClient = new SoapClient();
+     //设置是否是调试模式
+    mSoapClient.setDebug(true);
 ```
 * 异步调用
 ```Java
+/*如果调用的是.net平台的WebService，请务必在构造SoapRequest的时候设置setDotNet(true)*/
 public void getSupportCity(String cityName, Callback callback) {
         SoapRequest request = new SoapRequest.Builder().endPoint("http://www.webxml.com.cn/WebServices/WeatherWebService.asmx")
                 .methodName("getSupportCity")
@@ -30,6 +34,7 @@ public void getSupportCity(String cityName, Callback callback) {
 ```
 * 同步调用
 ```Java
+/*如果调用的是.net平台的WebService，请务必在构造SoapRequest的时候设置setDotNet(true)*/
 public SoapEnvelope getSupportCity(String cityName) {
         SoapRequest request = new SoapRequest.Builder().endPoint("http://www.webxml.com.cn/WebServices/WeatherWebService.asmx")
                 .methodName("getSupportCity")
