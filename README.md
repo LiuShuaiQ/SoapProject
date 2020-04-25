@@ -1,6 +1,6 @@
 # SoapProject
 
-------------------------------
+
 这是对于`ksoap2-android`的二次封装库
 `soap-util`是这个项目的源码，soap-example是这个项目的使用实例
 [博客链接](http://blog.csdn.net/LiuShuaiQ/article/details/70238810)
