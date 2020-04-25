@@ -1,16 +1,16 @@
 # SoapProject
-==============================
+
 ------------------------------
-这是对于ksoap2-android的二次封装库
-soap-util是这个项目的源码，soap-example是这个项目的使用实例
+这是对于`ksoap2-android`的二次封装库
+`soap-util`是这个项目的源码，soap-example是这个项目的使用实例
 [博客链接](http://blog.csdn.net/LiuShuaiQ/article/details/70238810)
 
 ## 导入
-1. 首先是引用ksoap2-android的jar包，这个在soap-example下的libs下有，你可以下载下来使用
-2. 将soap-util依赖上，你可以使用项目依赖，同时你将项目打出jar包使用，相应的jar包在soap-example下的libs下存在
+1. 首先是引用`ksoap2-android`的`jar`包，这个在`soap-example`下的`libs`下有，你可以下载下来使用
+2. 将`soap-util`依赖上，你可以使用项目依赖，同时你将项目打出jar包使用，相应的`jar`包在`soap-example`下的`libs`下存在
 
 ## 使用
-1)
+
 ```Java
     //没有特殊情况尽量保持一个SoapClient
     private SoapClient mSoapClient = new SoapClient();
